@@ -1,12 +1,5 @@
 #!/usr/bin/env bash
-if [ ! -d darknet ]; then
-		git clone https://github.com/digitalbrain79/darknet-nnpack darknet;
 
-		if [ $? -ne 0 ]; then
-				echo "Could not clone darknet repo";
-				exit 1;
-		fi
-fi
 
 pip install --upgrade git+https://github.com/Maratyszcza/PeachPy
 pip install --upgrade git+https://github.com/Maratyszcza/confu
@@ -26,6 +19,15 @@ cp -a lib/* ..
 cp include/nnpack.h ..
 cp deps/pthreadpool/include/pthreadpool.h ..
 cd ..
+
+if [ ! -d darknet ]; then
+		git clone https://github.com/digitalbrain79/darknet-nnpack darknet;
+
+		if [ $? -ne 0 ]; then
+				echo "Could not clone darknet repo";
+				exit 1;
+		fi
+fi
 
 # dive in the darknet folder and make
 cd darknet
