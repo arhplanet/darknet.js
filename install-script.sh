@@ -25,7 +25,7 @@ $NINJA_PATH/ninja
 cp -a lib/* ..
 cp include/nnpack.h ..
 cp deps/pthreadpool/include/pthreadpool.h ..
-cd..
+cd ..
 
 # dive in the darknet folder and make
 cd darknet
