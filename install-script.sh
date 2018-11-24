@@ -1,12 +1,31 @@
 #!/usr/bin/env bash
 if [ ! -d darknet ]; then
-		git clone https://github.com/arhplanet/darknet;
+		git clone https://github.com/digitalbrain79/darknet-nnpack darknet;
 
 		if [ $? -ne 0 ]; then
 				echo "Could not clone darknet repo";
 				exit 1;
 		fi
 fi
+
+pip install --upgrade git+https://github.com/Maratyszcza/PeachPy
+pip install --upgrade git+https://github.com/Maratyszcza/confu
+
+git clone https://github.com/ninja-build/ninja.git
+cd ninja
+git checkout release
+./configure.py --bootstrap
+export NINJA_PATH=$PWD
+
+git clone https://github.com/digitalbrain79/NNPACK-darknet.git
+cd NNPACK-darknet
+confu setup
+python ./configure.py --backend auto
+$NINJA_PATH/ninja
+sudo cp -a lib/* ..
+sudo cp include/nnpack.h ..
+sudo cp deps/pthreadpool/include/pthreadpool.h ..
+cd..
 
 # dive in the darknet folder and make
 cd darknet
