@@ -100,7 +100,6 @@ var DarknetBase = /** @class */ (function () {
             'free_detections': ['void', [detection_pointer, 'int']],
             'load_network': ['pointer', ['string', 'string', 'int']],
             'get_metadata': [METADATA, ['string']],
-            'nnp_convolution_inference': []
         });
         this.net = this.darknet.load_network(config.config, config.weights, 0);
     }
