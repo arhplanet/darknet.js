@@ -1,25 +1,5 @@
 #!/usr/bin/env bash
 
-
-pip install --upgrade git+https://github.com/Maratyszcza/PeachPy
-pip install --upgrade git+https://github.com/Maratyszcza/confu
-
-git clone https://github.com/ninja-build/ninja.git
-cd ninja
-git checkout release
-./configure.py --bootstrap
-export NINJA_PATH=$PWD
-
-git clone https://github.com/digitalbrain79/NNPACK-darknet.git
-cd NNPACK-darknet
-confu setup
-python ./configure.py --backend auto
-$NINJA_PATH/ninja
-cp -a lib/* ..
-cp include/nnpack.h ..
-cp deps/pthreadpool/include/pthreadpool.h ..
-cd ..
-
 if [ ! -d darknet ]; then
 		git clone https://github.com/digitalbrain79/darknet-nnpack darknet;
 
